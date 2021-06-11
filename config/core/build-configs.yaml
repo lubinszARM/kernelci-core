@@ -807,6 +807,8 @@ build_configs:
             <<: *x86_64_defconfig
             fragments: [x86-chromebook]
             extra_configs: ['x86_64_defconfig+x86-chromebook+kselftest']
+      chromeos_configs:
+        <<: *chromeos_configs
 
   kernelci_chromeos-next:
     tree: kernelci
