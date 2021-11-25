@@ -619,7 +619,9 @@ build_configs:
             fragments: [crypto]
           arm64:
             <<: *arm64_defconfig
-            fragments: [crypto]
+            fragments: [crypto, arm64-chromebook]
+            extra_configs:
+              - defconfig+arm64-chromebook+kselftest
           i386: *i386_defconfig
           mips: *mips_defconfig
           riscv: *riscv_defconfig
