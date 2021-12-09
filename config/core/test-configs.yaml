@@ -926,6 +926,13 @@ device_types:
     dtb: 'freescale/fsl-ls1028a-kontron-sl28-var3-ads2.dtb'
     boot_method: uboot
 
+  lenovo-hr330a-7x33cto1ww-emag:
+    mach: arm64
+    arch: arm64
+    boot_method: grub
+    filters:
+      - blocklist: {defconfig: ['allnoconfig', 'allmodconfig']}
+
   meson-g12a-sei510:
     mach: amlogic
     class: arm64-dtb
@@ -2204,6 +2211,25 @@ test_configs:
     test_plans:
       - baseline
       - baseline-nfs
+
+  - device_type: lenovo-hr330a-7x33cto1ww-emag
+    test_plans:
+      - baseline
+      - baseline-nfs
+      - kselftest-filesystems
+      - kselftest-futex
+      - kselftest-lib
+      - kselftest-livepatch
+      - kselftest-lkdtm
+      - kselftest-seccomp
+      - ltp-crypto
+      - ltp-fcntl-locktests
+      - ltp-ima
+      - ltp-ipc
+      - ltp-mm
+      - ltp-pty
+      - ltp-timers
+      - sleep
 
   - device_type: meson-g12a-sei510
     test_plans:
