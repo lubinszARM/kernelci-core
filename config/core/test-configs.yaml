@@ -615,6 +615,12 @@ device_types:
     class: arm-dtb
     boot_method: uboot
 
+  de0-nano-soc:
+    mach: socfpga
+    class: arm-dtb
+    boot_method: uboot
+    dtb: 'socfpga_cyclone5_de0_nano_soc.dtb'
+
   dove-cubox:
     mach: mvebu
     class: arm-dtb
@@ -1366,6 +1372,27 @@ device_types:
     <<: *qemu_x86_64
     params: *uefi_i386
 
+  r8a7743-iwg20d-q7:
+    mach: renesas
+    class: arm-dtb
+    boot_method: uboot
+    filters:
+      - passlist: {defconfig: ['defconfig']}
+
+  r8a7745-iwg22d-sodimm:
+    mach: renesas
+    class: arm-dtb
+    boot_method: uboot
+    filters:
+      - passlist: {defconfig: ['defconfig']}
+
+  r8a77470-iwg23s-sbc:
+    mach: renesas
+    class: arm-dtb
+    boot_method: uboot
+    filters:
+      - passlist: {defconfig: ['defconfig']}
+
   r8a774a1-hihope-rzg2m-ex:
     mach: renesas
     class: arm64-dtb
@@ -1688,7 +1715,33 @@ device_types:
             - 'tinyconfig'
             - 'kvm_guest.config'
 
+  x86-openblocks-iot-vx2:
+    mach: x86
+    arch: i386
+    boot_method: grub
+    filters:
+      - blocklist:
+          defconfig:
+            - 'allmodconfig'
+            - 'allnoconfig'
+            - 'x86_64_defconfig'
+            - 'tinyconfig'
+            - 'kvm_guest.config'
+
   x86-pentium4:
+    mach: x86
+    arch: i386
+    boot_method: grub
+    filters:
+      - blocklist:
+          defconfig:
+            - 'allmodconfig'
+            - 'allnoconfig'
+            - 'x86_64_defconfig'
+            - 'tinyconfig'
+            - 'kvm_guest.config'
+
+  x86-simatic-ipc227e:
     mach: x86
     arch: i386
     boot_method: grub
@@ -1905,6 +1958,11 @@ test_configs:
   - device_type: da850-lcdk
     test_plans:
       - baseline
+
+  - device_type: de0-nano-soc
+    test_plans:
+      - baseline
+      - baseline-nfs
 
   - device_type: dove-cubox
     test_plans:
@@ -2396,6 +2454,18 @@ test_configs:
     test_plans:
       - baseline_qemu
 
+  - device_type: r8a7743-iwg20d-q7
+    test_plans:
+      - baseline
+
+  - device_type: r8a7745-iwg22d-sodimm
+    test_plans:
+      - baseline
+
+  - device_type: r8a77470-iwg23s-sbc
+    test_plans:
+      - baseline
+
   - device_type: r8a774a1-hihope-rzg2m-ex
     test_plans:
       - baseline
@@ -2654,7 +2724,17 @@ test_configs:
       - baseline
       - baseline-nfs
 
+  - device_type: x86-openblocks-iot-vx2
+    test_plans:
+      - baseline
+      - baseline-nfs
+
   - device_type: x86-pentium4
+    test_plans:
+      - baseline
+      - baseline-nfs
+
+  - device_type: x86-simatic-ipc227e
     test_plans:
       - baseline
       - baseline-nfs
